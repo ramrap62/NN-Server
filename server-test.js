@@ -12,9 +12,6 @@ var nodemailer = require("nodemailer");
 var name,to,subject,text;
 var smtpTransport = nodemailer.createTransport({
     service: "gmail",
-    host: "smtp.gmail.com",
-    port: 587,
-    secure:true,
     auth: {
         user: "nn.extension@gmail.com",
         pass: "Tenedun@12345"
@@ -79,7 +76,8 @@ app.post("/register", async (request, response) => {
         rand=Math.floor((Math.random() * 100) + 54);
         host=request.get('host');
         link="http://"+request.get('host')+"/verify?id="+rand;
-        mailOptions={
+        const mailOptions={
+            from: "nn.extension@gmail.com",
             to : request.body.email,
             subject : "Please confirm your Email account",
             html : "Hello,<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>"
@@ -88,10 +86,10 @@ app.post("/register", async (request, response) => {
         smtpTransport.sendMail(mailOptions, function(error, response){
          if(error){
                 console.log(error);
-            res.end("error");
+            //res.end("error");
          }else{
                 console.log("Message sent: " + response.message);
-            res.end("sent");
+            //res.end("sent");
              }
          });
     
@@ -166,7 +164,7 @@ app.post("/logout", async (request, response)=> {
            console.log(request.cookies['email']);
            
            console.log(request.cookies['login']);
-         //response.sendFile(__dirname+'/Login_v4/Login_v4/login.html');
+           return response.sendFile(__dirname+'/Login_v4/Login_v4/login.html');
           }
                      
     });     
