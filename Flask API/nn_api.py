@@ -13,10 +13,10 @@ classifier = NudeClassifier("models/classifier_model")
 app = Flask(__name__)
 cors = CORS(app)
 
-@app.route('/hello')
-@cross_origin()
-def hello():
-    return "Hello World!"
+# @app.route('/hello')
+# @cross_origin()
+# def hello():
+#     return "Hello World!"
 
 @app.route('/nudenet', methods=['GET', 'POST'])
 def nudenet_classifier_from_url():
